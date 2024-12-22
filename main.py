@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 
 
 # Since we are not using sections, we will use pages.toml
-nav = get_nav_from_toml(".streamlit/pages.toml")
+nav = get_nav_from_toml("pages.toml")
 
 # Display logo
 ##st.logo("logo.png")
