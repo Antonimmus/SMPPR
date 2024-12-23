@@ -150,17 +150,17 @@ if st.checkbox('Update Forecasts', value=True):
     st.plotly_chart(validation_fig_sarima)
 
     # Comparison Plot
-    comparison_fig = go.Figure()
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
-    comparison_fig.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Forecast', line=dict(color='blue')))
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Forecast', line=dict(color='red')))
-    comparison_fig.update_layout(xaxis_title='Date', yaxis_title=category)
+    #comparison_fig = go.Figure()
+    #comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
+    #comparison_fig.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Forecast', line=dict(color='blue')))
+    #comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
+    #comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Forecast', line=dict(color='red')))
+    #comparison_fig.update_layout(xaxis_title='Date', yaxis_title=category)
 
-    st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Comparison of ARIMA, SARIMA & LSTM Forecasts for {category}</i></h5>", unsafe_allow_html=True)
-    st.write('\n')
-    st.plotly_chart(comparison_fig)
+    #st.markdown(
+     #   f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Comparison of ARIMA, SARIMA & LSTM Forecasts for {category}</i></h5>", unsafe_allow_html=True)
+    #st.write('\n')
+    #st.plotly_chart(comparison_fig)
 
     # Calculate performance metrics
     mae_lstm = mean_absolute_error(test_data_lstm, forecast_lstm.flatten())
