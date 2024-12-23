@@ -46,6 +46,7 @@ st.write('\n')
 if st.checkbox('Use LSTM Forecast', value=True):
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>LSTM Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)    
     st.write('\n')
+   
     # Prepare data for LSTM
     def prepare_data(data, n_steps):
         X, y = [], []
@@ -61,13 +62,22 @@ if st.checkbox('Use LSTM Forecast', value=True):
     X = X.reshape((X.shape[0], X.shape[1], 1))
 
     # Build LSTM model
-    model = Sequential()
-    model.add(LSTM(50, activation='relu', input_shape=(X.shape[1], 1)))
-    model.add(Dropout(0.2))
-    model.add(Dense(1))
-    
-    model.compile(optimizer='adam', loss='mean_squared_error')
-    model.fit(X, y, epochs=50, verbose=0)
+    # Build a more complex LSTM model
+    model_lstm = Sequential([
+        LSTM(100, activation='tanh', return_sequences=True, input_shape=(X_train.shape[1], 1)),
+        Dropout(0.2),
+        LSTM(50, activation='tanh'),
+        Dropout(0.2),
+        Dense(1)
+    ])
+
+    model_lstm.compile(optimizer='adam', loss='mean_squared_error')
+
+    # Add Early Stopping
+    early_stopping = EarlyStopping(monitor='loss', patience=10, restore_best_weights=True)
+
+    # Fit the model
+    model_lstm.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0, callbacks=[early_stopping])
 
     # Make predictions
     forecast_lstm = []
@@ -79,14 +89,16 @@ if st.checkbox('Use LSTM Forecast', value=True):
         forecast_lstm.append(prediction[0, 0])
         last_data = np.append(last_data[1:], prediction)
 
+    # Inverse transform the predictions
     forecast_lstm = scaler.inverse_transform(np.array(forecast_lstm).reshape(-1, 1))
-    future_dates_lstm = pd.date_range(start=time_series.index[-1], periods=n_periods + 1, freq='MS')[1:]
+    future_dates_lstm = pd.date_range(start=test_data_lstm.index[0], periods=n_forecast_periods, freq='MS')
 
     # LSTM Plot
     fig_lstm = go.Figure()
     fig_lstm.add_trace(go.Scatter(x=time_series.index, y=time_series, mode='lines', name='Actual', line=dict(color='blue')))
     fig_lstm.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='Predicted', line=dict(color='orange')))
     fig_lstm.update_layout(xaxis_title='Date', yaxis_title=category)
+    
     
     st.plotly_chart(fig_lstm)
 
