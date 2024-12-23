@@ -34,7 +34,7 @@ with col1:
 with col2:
     category = st.selectbox('Select Category', relevant_categories)
 
-n_periods = st.slider('Select number of months to forecast (1-36)', 1, 36)
+n_periods = st.slider('Select number of months to forecast (1-120)', 1, 120)
 
 # Filter data based on user input
 filtered_data = df[df['Sector'] == sector]
