@@ -164,8 +164,19 @@ if st.checkbox('Update Forecasts', value=True):
     st.plotly_chart(comparison_fig)
 
     # Calculate performance metrics
+    # Ensure test_data_lstm is a NumPy array and flatten it
+test_data_lstm = test_data_lstm.values.flatten()
+
+# Ensure both arrays have the same length
+min_length = min(len(test_data_lstm), len(forecast_lstm.flatten()))
+test_data_lstm = test_data_lstm[:min_length]
+forecast_lstm = forecast_lstm.flatten()[:min_length]
+
+
     mae_lstm = mean_absolute_error(test_data_lstm, forecast_lstm.flatten())
-    rmse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten(), squared=False)
+ 
+# Calculate RMSE
+rmse_lstm = mean_squared_error(test_data_lstm, forecast_lstm, squared=False)
     mse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten())
     mape_lstm = np.mean(np.abs((test_data_lstm - forecast_lstm.flatten()) / test_data_lstm)) * 100
 
