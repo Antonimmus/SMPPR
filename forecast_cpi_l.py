@@ -31,9 +31,6 @@ relevant_categories = [
     'Education', 'Personal care and effects', 'Miscellaneous', 'General index'
 ]
 
-relevant_sector = [
-    'RuraL', 'Urban'
-]
 
 # Streamlit app title
 st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>User Input Parameters</i></h5>", unsafe_allow_html=True)
@@ -42,7 +39,7 @@ st.write('\n')
 # Create a two-column layout for user input and results
 col1, col2 = st.columns(2)
 with col1:
-    sector = st.selectbox('Select Sector', df['Sector'].relevant_sector)
+    sector = st.selectbox('Select Sector', df['Sector'].unique())
     
 with col2:
     category = st.selectbox('Select Category', relevant_categories)
