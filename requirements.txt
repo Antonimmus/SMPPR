@@ -1,4 +1,5 @@
-numpy
+streamlit
+numpy == 1.26.4
 pandas
 plotly
 pmdarima
@@ -6,6 +7,5 @@ scikit-learn
 tensorflow
 st_pages
 statsmodels
-streamlit
 tensorflow_intel
 sqlalchemy
