@@ -69,12 +69,6 @@ if st.checkbox('Use LSTM Forecast', value=True):
     model.compile(optimizer='adam', loss='mean_squared_error')
     model.fit(X, y, epochs=50, verbose=0)
 
-    # Add Early Stopping
-    early_stopping = EarlyStopping(monitor='loss', patience=10, restore_best_weights=True)
-
-    # Fit the model
-    model_lstm.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0, callbacks=[early_stopping])
-
     # Make predictions
     forecast_lstm = []
     last_data = scaled_data[-n_steps:]
