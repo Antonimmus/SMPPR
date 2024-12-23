@@ -132,7 +132,7 @@ if st.checkbox('Update LSTM Forecast', value=True):
         metrics = {
             'MAE': mae_lstm,
             'RMSE': rmse_lstm,
-            'MSE': mse_lstm,
+            'MSE': mse_lstm
         }
 
         fig_metrics = go.Figure()
