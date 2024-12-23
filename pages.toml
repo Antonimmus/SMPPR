@@ -1,12 +1,12 @@
 [[pages]]
 path = "overview.py"
 name = "Overview"
-icon = "🐱‍💻"
+icon = "📊"
 
 [[pages]]
 path = "model_validation.py"
 name = "Model Validation"
-icon = "✔"
+icon = "📊"
 
 [[pages]]
 path = "forecast_cpi.py"
