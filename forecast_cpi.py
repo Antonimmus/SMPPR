@@ -68,7 +68,7 @@ if st.checkbox('Use LSTM Forecast', value=True):
     
     model.compile(optimizer='adam', loss='mean_squared_error')
     model.fit(X, y, epochs=50, verbose=0)
-
+    
     # Make predictions
     forecast_lstm = []
     last_data = scaled_data[-n_steps:]
@@ -79,9 +79,8 @@ if st.checkbox('Use LSTM Forecast', value=True):
         forecast_lstm.append(prediction[0, 0])
         last_data = np.append(last_data[1:], prediction)
 
-    # Inverse transform the predictions
     forecast_lstm = scaler.inverse_transform(np.array(forecast_lstm).reshape(-1, 1))
-    future_dates_lstm = pd.date_range(start=test_data_lstm.index[0], periods=n_forecast_periods, freq='MS')
+    future_dates_lstm = pd.date_range(start=time_series.index[-1], periods=n_periods + 1, freq='MS')[1:]
 
     # LSTM Plot
     fig_lstm = go.Figure()
