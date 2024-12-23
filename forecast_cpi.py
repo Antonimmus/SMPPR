@@ -91,11 +91,6 @@ if st.checkbox('Use LSTM Forecast', value=True):
     
     st.plotly_chart(fig_lstm)
 
-    # Performance Metrics
-    if len(forecast_lstm) == n_periods:
-        mae_lstm = mean_absolute_error(time_series[-n_periods:], forecast_lstm.flatten())
-        rmse_lstm = mean_squared_error(time_series[-n_periods:], forecast_lstm.flatten(), squared=False)
-        mape_lstm = mean_absolute_percentage_error(time_series[-n_periods:], forecast_lstm.flatten()) * 100
 
 # ARIMA Forecasting
 st.markdown(f"<hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'>", unsafe_allow_html=True)
