@@ -128,3 +128,25 @@ if st.checkbox('Update LSTM Forecast', value=True):
         st.write(f"**Mean Squared Error (MSE):** {mse_lstm:.4f}")
       
 
+        # Create a bar plot for performance metrics
+        metrics = {
+            'MAE': mae_lstm,
+            'RMSE': rmse_lstm,
+            'MSE': mse_lstm,
+        }
+
+        fig_metrics = go.Figure()
+        fig_metrics.add_trace(go.Bar(x=list(metrics.keys()), y=list(metrics.values()), marker_color='indigo'))
+
+        fig_metrics.update_layout(
+            
+            xaxis_title='Metrics',
+            yaxis_title='Values',
+            yaxis=dict(range=[0, max(metrics.values()) * 1.1])
+        )
+        st.markdown(
+            f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Metrics Plot</i></h5><br>", 
+            unsafe_allow_html=True
+        )
+        st.write('\n')
+        st.plotly_chart(fig_metrics)
