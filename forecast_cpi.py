@@ -46,7 +46,6 @@ st.write('\n')
 if st.checkbox('Use LSTM Forecast', value=True):
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>LSTM Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)    
     st.write('\n')
-   
     # Prepare data for LSTM
     def prepare_data(data, n_steps):
         X, y = [], []
@@ -62,14 +61,12 @@ if st.checkbox('Use LSTM Forecast', value=True):
     X = X.reshape((X.shape[0], X.shape[1], 1))
 
     # Build LSTM model
-    # Build a more complex LSTM model
-    # Build LSTM model
     model = Sequential()
     model.add(LSTM(50, activation='relu', input_shape=(X.shape[1], 1)))
     model.add(Dropout(0.2))
     model.add(Dense(1))
-
-     model.compile(optimizer='adam', loss='mean_squared_error')
+    
+    model.compile(optimizer='adam', loss='mean_squared_error')
     model.fit(X, y, epochs=50, verbose=0)
 
     # Add Early Stopping
