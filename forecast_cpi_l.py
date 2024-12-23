@@ -99,9 +99,14 @@ if st.checkbox('Update LSTM Forecast', value=True):
     fig_lstm = go.Figure()
     fig_lstm.add_trace(go.Scatter(x=time_series.index, y=time_series, mode='lines', name='Actual', line=dict(color='blue')))
     fig_lstm.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='Predicted', line=dict(color='orange')))
-    fig_lstm.update_layout(xaxis_title='Date', yaxis_title=category)
 
-   
+        # Add layout details
+    fig_lstm.update_layout(
+        
+        xaxis_title='Date',
+        yaxis_title=category,
+        legend=dict(x=0, y=1)
+    )   
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>LSTM Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(fig_lstm)
