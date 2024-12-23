@@ -9,3 +9,4 @@ st_pages
 statsmodels
 tensorflow_intel
 sqlalchemy
+keras
