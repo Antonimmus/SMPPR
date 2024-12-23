@@ -15,7 +15,6 @@ from tensorflow.keras.callbacks import EarlyStopping
 df = pd.read_csv('cleaned_data.csv')
 
 # Convert 'Year' and 'Month' to datetime format and create a 'Date' column
-
 df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(str) + '-01')
 
 # Define relevant categories for forecasting
@@ -33,13 +32,13 @@ relevant_categories = [
 
 # Streamlit app title
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>User Input Parameters</i></h5>", unsafe_allow_html=True)
+    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>User Input Parameters</i></h5>", unsafe_allow_html=True)
 st.write('\n')
+
 # User input for sector and category
 col1, col2 = st.columns(2)
 with col1:
     sector = st.selectbox('Select Sector', df['Sector'].unique())
-    
 with col2:
     category = st.selectbox('Select Category', relevant_categories)
 
@@ -75,12 +74,13 @@ if st.checkbox('Update Forecasts', value=True):
     X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
 
     # Build a more complex LSTM model
-    model_lstm = Sequential()
-    model_lstm.add(LSTM(100, activation='tanh', return_sequences=True, input_shape=(X_train.shape[1], 1)))
-    model_lstm.add(Dropout(0.2))
-    model_lstm.add(LSTM(50, activation='tanh'))
-    model_lstm.add(Dropout(0.2))
-    model_lstm.add(Dense(1))
+    model_lstm = Sequential([
+        LSTM(100, activation='tanh', return_sequences=True, input_shape=(X_train.shape[1], 1)),
+        Dropout(0.2),
+        LSTM(50, activation='tanh'),
+        Dropout(0.2),
+        Dense(1)
+    ])
 
     model_lstm.compile(optimizer='adam', loss='mean_squared_error')
 
@@ -120,12 +120,11 @@ if st.checkbox('Update Forecasts', value=True):
     fig_lstm.add_trace(go.Scatter(x=train_data_lstm.index, y=train_data_lstm, mode='lines', name='Training Data', line=dict(color='blue')))
     fig_lstm.add_trace(go.Scatter(x=test_data_lstm.index, y=test_data_lstm, mode='lines', name='Actual Test Data', line=dict(color='green')))
     fig_lstm.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Forecast', line=dict(color='orange')))
-        
+
     st.markdown(
         f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>LSTM Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(fig_lstm)
-
 
     # ARIMA Validation Plot
     validation_fig_arima = go.Figure()
@@ -133,7 +132,7 @@ if st.checkbox('Update Forecasts', value=True):
     validation_fig_arima.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
     validation_fig_arima.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
     validation_fig_arima.update_layout(xaxis_title='Date', yaxis_title=category)
-    
+
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>ARIMA Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(validation_fig_arima)
@@ -144,13 +143,12 @@ if st.checkbox('Update Forecasts', value=True):
     validation_fig_sarima.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
     validation_fig_sarima.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Forecast', line=dict(color='orange')))
     validation_fig_sarima.update_layout(xaxis_title='Date', yaxis_title=category)
-    
+
     st.markdown(
         f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>SARIMA Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(validation_fig_sarima)
-    
-    
+
     # Comparison Plot
     comparison_fig = go.Figure()
     comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
@@ -158,6 +156,7 @@ if st.checkbox('Update Forecasts', value=True):
     comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
     comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Forecast', line=dict(color='red')))
     comparison_fig.update_layout(xaxis_title='Date', yaxis_title=category)
+
     st.markdown(
         f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Comparison of ARIMA, SARIMA & LSTM Forecasts for {category}</i></h5>", unsafe_allow_html=True)
     st.write('\n')
@@ -167,70 +166,30 @@ if st.checkbox('Update Forecasts', value=True):
     mae_lstm = mean_absolute_error(test_data_lstm, forecast_lstm.flatten())
     rmse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten(), squared=False)
     mse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten())
-    mape_lstm = np.mean(np.abs((test_data_lstm - forecast_lstm.flatten()) / test_data_lstm)) * 100
 
+    # Display metrics
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 20px;color: #3b3b3b;padding:0px'><i>Performance Metrics</i></h5>", unsafe_allow_html=True)
+    st.write(f"**LSTM Performance Metrics for {category}:**")
+    st.write(f"- Mean Absolute Error (MAE): {mae_lstm:.2f}")
+    st.write(f"- Mean Squared Error (MSE): {mse_lstm:.2f}")
+    st.write(f"- Root Mean Squared Error (RMSE): {rmse_lstm:.2f}")
+
+    # ARIMA Metrics
     mae_arima = mean_absolute_error(validation_data_arima, forecast_arima)
     rmse_arima = mean_squared_error(validation_data_arima, forecast_arima, squared=False)
     mse_arima = mean_squared_error(validation_data_arima, forecast_arima)
-    mape_arima = np.mean(np.abs((validation_data_arima - forecast_arima) / validation_data_arima)) * 100
 
+    st.write(f"\n**ARIMA Performance Metrics for {category}:**")
+    st.write(f"- Mean Absolute Error (MAE): {mae_arima:.2f}")
+    st.write(f"- Mean Squared Error (MSE): {mse_arima:.2f}")
+    st.write(f"- Root Mean Squared Error (RMSE): {rmse_arima:.2f}")
+
+    # SARIMA Metrics
     mae_sarima = mean_absolute_error(validation_data_arima, forecast_sarima)
     rmse_sarima = mean_squared_error(validation_data_arima, forecast_sarima, squared=False)
     mse_sarima = mean_squared_error(validation_data_arima, forecast_sarima)
-    mape_sarima = np.mean(np.abs((validation_data_arima - forecast_sarima) / validation_data_arima)) * 100
 
-    # Create a summary table for metrics
-    metrics_df = pd.DataFrame({
-    'Model': ['LSTM', 'ARIMA', 'SARIMA'],
-    'Mean Absolute Error (MAE)': [mae_lstm, mae_arima, mae_sarima],
-    'Root Mean Squared Error (RMSE)': [rmse_lstm, rmse_arima, rmse_sarima],
-    'Mean Squared Error (MSE)': [mse_lstm, mse_arima, mse_sarima],
-    'Mean Absolute Percentage Error (MAPE)': [mape_lstm, mape_arima, mape_sarima]
-     })
-
-    # Display the metrics as a table
-    st.markdown(
-    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Metrics</i><br><br></h5>", 
-    unsafe_allow_html=True)
-    st.write('\n')
-    st.dataframe(metrics_df, use_container_width=True)
-
-    # Combine actual and predicted values for all models
-    results_df = pd.DataFrame({
-        'Date': validation_data_arima.index,
-        'Actual': validation_data_arima.values,
-        'LSTM Predicted': forecast_lstm.flatten(),
-        'ARIMA Predicted': forecast_arima,
-        'SARIMA Predicted': forecast_sarima
-    })
-
-    # Display the results as a table
-    st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Actual Vs. Predicted Table Values</i><br><br></h5>", unsafe_allow_html=True)
-    st.write('\n')
-    st.dataframe(results_df, use_container_width=True)
-
-
-# Create a bar chart for model performance comparison
-# Create a bar chart for model performance comparison
-performance_metrics = metrics_df.melt(id_vars='Model', 
-                                        value_vars=['Mean Absolute Error (MAE)', 
-                                                    'Root Mean Squared Error (RMSE)', 
-                                                    'Mean Squared Error (MSE)', 
-                                                    'Mean Absolute Percentage Error (MAPE)'])
-performance_metrics.columns = ['Model', 'Metric', 'Value']
-
-# Plot the bar chart
-fig_performance = px.bar(performance_metrics, 
-                          x='Model', 
-                          y='Value', 
-                          color='Metric', 
-                          barmode='group', 
-                          title='Model Performance Comparison',
-                          labels={'Value': 'Error Value', 'Model': 'Model'})
-
-# Display the bar chart in Streamlit
-st.markdown(
-    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Comparison Bar Graph</i><br></h5>", 
-    unsafe_allow_html=True)
-st.plotly_chart(fig_performance)
+    st.write(f"\n**SARIMA Performance Metrics for {category}:**")
+    st.write(f"- Mean Absolute Error (MAE): {mae_sarima:.2f}")
+    st.write(f"- Mean Squared Error (MSE): {mse_sarima:.2f}")
+    st.write(f"- Root Mean Squared Error (RMSE): {rmse_sarima:.2f}")
