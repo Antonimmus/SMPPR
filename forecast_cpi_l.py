@@ -116,4 +116,15 @@ if st.checkbox('Update LSTM Forecast', value=True):
         mae_lstm = mean_absolute_error(time_series[-n_periods:], forecast_lstm.flatten())
         mse_lstm = mean_squared_error(time_series[-n_periods:], forecast_lstm.flatten())
         rmse_lstm = np.sqrt(mse_lstm)
+
         
+        st.markdown(
+            f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Metrics</i></h5><br>", 
+            unsafe_allow_html=True
+        )
+        st.write('\n')
+        st.write(f"**Mean Absolute Error (MAE):** {mae_lstm:.4f}")
+        st.write(f"**Root Mean Squared Error (RMSE):** {rmse_lstm:.4f}")
+        st.write(f"**Mean Squared Error (MSE):** {mse_lstm:.4f}")
+        st.write(f"**Mean Absolute Percentage Error (MAPE):** {mape_lstm:.2f}%")        
+
