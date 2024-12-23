@@ -162,18 +162,6 @@ if st.checkbox('Update Forecasts', value=True):
     st.write('\n')
     st.plotly_chart(comparison_fig)
 
-    # Calculate performance metrics
-    mae_lstm = mean_absolute_error(test_data_lstm, forecast_lstm.flatten())
-    rmse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten(), squared=False)
-    mse_lstm = mean_squared_error(test_data_lstm, forecast_lstm.flatten())
-
-    # Display metrics
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 20px;color: #3b3b3b;padding:0px'><i>Performance Metrics</i></h5>", unsafe_allow_html=True)
-    st.write(f"**LSTM Performance Metrics for {category}:**")
-    st.write(f"- Mean Absolute Error (MAE): {mae_lstm:.2f}")
-    st.write(f"- Mean Squared Error (MSE): {mse_lstm:.2f}")
-    st.write(f"- Root Mean Squared Error (RMSE): {rmse_lstm:.2f}")
-
     # ARIMA Metrics
     mae_arima = mean_absolute_error(validation_data_arima, forecast_arima)
     rmse_arima = mean_squared_error(validation_data_arima, forecast_arima, squared=False)
