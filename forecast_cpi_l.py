@@ -126,5 +126,5 @@ if st.checkbox('Update LSTM Forecast', value=True):
         st.write(f"**Mean Absolute Error (MAE):** {mae_lstm:.4f}")
         st.write(f"**Root Mean Squared Error (RMSE):** {rmse_lstm:.4f}")
         st.write(f"**Mean Squared Error (MSE):** {mse_lstm:.4f}")
-        st.write(f"**Mean Absolute Percentage Error (MAPE):** {mape_lstm:.2f}%")        
+      
 
