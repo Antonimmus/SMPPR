@@ -69,7 +69,8 @@ if st.checkbox('Use LSTM Forecast', value=True):
     model.add(Dropout(0.2))
     model.add(Dense(1))
 
-    model_lstm.compile(optimizer='adam', loss='mean_squared_error')
+     model.compile(optimizer='adam', loss='mean_squared_error')
+    model.fit(X, y, epochs=50, verbose=0)
 
     # Add Early Stopping
     early_stopping = EarlyStopping(monitor='loss', patience=10, restore_best_weights=True)
