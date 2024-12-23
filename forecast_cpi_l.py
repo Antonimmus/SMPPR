@@ -1,4 +1,4 @@
-pip3 install streamlit
+#pip3 install streamlit
 
 
 import streamlit as st
@@ -8,7 +8,9 @@ import plotly.graph_objects as go
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error, mean_absolute_percentage_error
+import pmdarima as pm
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 # Load the cleaned dataset
 df = pd.read_csv('cleaned_data.csv')
@@ -93,18 +95,13 @@ if st.checkbox('Update LSTM Forecast', value=True):
     # Create a date range for the forecasted values
     future_dates_lstm = pd.date_range(start=time_series.index[-1], periods=n_periods + 1, freq='MS')[1:]
 
-    # LSTM Plot
+     # LSTM Plot
     fig_lstm = go.Figure()
     fig_lstm.add_trace(go.Scatter(x=time_series.index, y=time_series, mode='lines', name='Actual', line=dict(color='blue')))
     fig_lstm.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='Predicted', line=dict(color='orange')))
+    fig_lstm.update_layout(xaxis_title='Date', yaxis_title=category)
 
-    # Add layout details
-    fig_lstm.update_layout(
-        
-        xaxis_title='Date',
-        yaxis_title=category,
-        legend=dict(x=0, y=1)
-    )
+   
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>LSTM Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(fig_lstm)
