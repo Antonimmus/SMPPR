@@ -28,11 +28,6 @@ path = "cpi_percent_change_y.py"
 name = "Yearly CPI Trends"
 icon = "📉"
 
-[[pages]]
-path = "contact.py"
-name = "Contact Us"
-icon = "📩"
-
 
 [theme]
 base="light"
