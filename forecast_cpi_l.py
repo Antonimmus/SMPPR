@@ -112,10 +112,11 @@ if st.checkbox('Update LSTM Forecast', value=True):
     st.plotly_chart(fig_lstm)
 
     # Calculate performance metrics
-    if len(forecast_lstm) == n_periods:
-        mae_lstm = mean_absolute_error(time_series[-n_periods:], forecast_lstm.flatten())
-        rmse_lstm = mean_squared_error(time_series[-n_periods:], forecast_lstm.flatten(), squared=False)
-        mse_lstm = mean_squared_error(time_series[-n_periods:], forecast_lstm.flatten())
+    mse_lstm = mean_squared_error(time_series[-n_periods:], forecast_lstm.flatten())
+    mae_lstm = mean_absolute_error(time_series[-n_periods:], forecast_lstm.flatten())
+    rmse_lstm = np.sqrt(mse_lstm)
+ 
+
         
         # Calculate MAPE
         mape_lstm = np.mean(np.abs((time_series[-n_periods:] - forecast_lstm.flatten()) / time_series[-n_periods:])) * 100
