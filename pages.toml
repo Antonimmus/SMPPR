@@ -1,22 +1,17 @@
 [[pages]]
 path = "overview.py"
 name = "Overview"
-icon = "🏡"
+icon = "🐱‍💻"
 
 [[pages]]
 path = "model_validation.py"
 name = "Model Validation"
-icon = "✅"
+icon = "✔"
 
 [[pages]]
 path = "forecast_cpi.py"
-name = "Short-Term CPI Forecasting"
+name = "CPI Forecasting"
 icon = "📊"
-
-[[pages]]
-path = "forecast_cpi_l.py"
-name = "Long-Term CPI Forecasting"
-icon = "🚀"
 
 [[pages]]
 path = "cpi_percent_change.py"
