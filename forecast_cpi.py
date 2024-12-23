@@ -63,13 +63,11 @@ if st.checkbox('Use LSTM Forecast', value=True):
 
     # Build LSTM model
     # Build a more complex LSTM model
-    model_lstm = Sequential([
-        LSTM(100, activation='tanh', return_sequences=True, input_shape=(X_train.shape[1], 1)),
-        Dropout(0.2),
-        LSTM(50, activation='tanh'),
-        Dropout(0.2),
-        Dense(1)
-    ])
+    # Build LSTM model
+    model = Sequential()
+    model.add(LSTM(50, activation='relu', input_shape=(X.shape[1], 1)))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))
 
     model_lstm.compile(optimizer='adam', loss='mean_squared_error')
 
