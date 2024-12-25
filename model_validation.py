@@ -19,8 +19,8 @@ df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(st
 
 # Define relevant categories for forecasting
 relevant_categories = [
-    'Cereals and products', 'Риба та м'ясо', 'Яйця', 'Молочні продукти',
-    'Oils and fats', 'Фрукти', 'Овочі', 'Pulses and products',
+    'Cereals and products', 'Meat and fish', 'Egg', 'Milk and products',
+    'Oils and fats', 'Fruits', 'Vegetables', 'Pulses and products',
     'Sugar and Confectionery', 'Spices', 'Non-alcoholic beverages',
     'Prepared meals, snacks, sweets etc.', 'Food and beverages',
     'Pan, tobacco and intoxicants', 'Clothing', 'Footwear',
