@@ -129,14 +129,6 @@ This system allows policymakers to:
 st.write('\n')
 st.write('\n')
 
-# Our Team Section
-st.markdown(
-    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Meet Our Team</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", 
-    unsafe_allow_html=True
-)
-st.write('\n')
-
-
 # Conclusion Section
 st.markdown(
         f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Conclusion</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
