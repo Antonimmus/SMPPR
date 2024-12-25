@@ -140,12 +140,3 @@ the Indian economy remains resilient in the face of future challenges.
 """)
 st.write('\n')
 st.write('\n')
-
-# Conclusion Section
-st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Get Involved</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
-st.write('\n')
-st.write("""
-We are always looking to collaborate with like-minded professionals and organizations. If you're interested in working with us or learning more about our services, please reach out through our contact page.
-
-<br><center><b style='font-size: 23px'>Thank you for visiting our website and learning more about us!</b></center>""",unsafe_allow_html=True )
