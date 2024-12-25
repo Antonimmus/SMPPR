@@ -20,7 +20,7 @@ st.write('\n')
 
 # Project Introduction
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Introduction</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Вступ</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
 Зміни економічного середовища, спричинені інфляцією та коливанням споживчих цін, створюють складні виклики для стабільності національної економіки. 
@@ -62,25 +62,27 @@ st.write('\n')
 
 # Inflation and Cost Pressure Section
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Inflation and Cost Pressure</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Інфляція та тиск витрат</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
-Inflation is not just a number; it has real-world implications for individuals, businesses, and governments. High inflation can erode consumer 
-purchasing power, making it more expensive for people to buy the same goods and services. For businesses, inflation can increase input costs, 
-squeezing profit margins. Governments, on the other hand, need to manage inflation to maintain economic stability and ensure sustainable growth. 
-This is where the concept of cost pressure comes in—understanding how inflation affects various sectors can help in anticipating and mitigating its impact.
+Через складність інфляційних процесів існують суперечності між різними економічними школами щодо пояснення причин її виникнення. 
+Наприклад, згідно з монетарною теорією «інфляція завжди і всюди є грошовим феноменом» (Мілтон Фрідман). При цьому, визначення процесу 
+зростання цін як грошового явища можливе лише за умови безперервності і тривалості в часі процесу зростання цін. Збільшення грошової 
+маси (створення нових грошей) може призводити до зростання цін, однак цілком очевидним цей взаємозв'язок стає лише за високого зростання
+пропозиції грошей. Окрім збільшення пропозиції грошей, існує досить багато причин виникнення і розвитку інфляційних процесів.
 """)
 st.write('\n')
 st.write('\n')
 
 # Role of Forecasting in Policy Making Section
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Role of Forecasting in Policy Making</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Роль прогнозування</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
-Forecasting future CPI values is essential for proactive economic management. By predicting inflation trends, policymakers can take preemptive actions 
-to manage cost pressures and ensure economic stability. Accurate forecasting enables the Ministry of Statistics and Programme Implementation's (MoSPI) 
-National Statistical Office (NSO) and Central Statistics Office (CSO) to design and implement policies that address potential economic challenges before they escalate.
+Прогнозування майбутніх значень ІСЦ має важливе значення для проактивного управління економікою. Прогнозуючи тенденції інфляції, політики можуть вживати попереджувальних заходів 
+керувати тиском витрат і забезпечувати економічну стабільність. Точне прогнозування дозволяє Міністерству статистики та реалізації програм (МНСІ) 
+Національному статистичному управлінню (NSO) і Центральному статистичному управлінню (CSO) розробляти та впроваджувати політику, спрямовану на 
+вирішення потенційних економічних проблем до їх загострення.
 """)
 st.write('\n')
 st.write('\n')
@@ -88,25 +90,26 @@ st.write('\n')
 # Decision Support System Using ARIMA and SARIMA Models Section
 
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Decision Support System Using ARIMA and SARIMA Models</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Система Підтримки Прийняття Рішень з використанням
+        ARIMA та SARIMA моделей</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 21px;color: #3b3b3b;padding:0px'>ARIMA Model</h5>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 21px;color: #3b3b3b;padding:0px'>Модель ARIMA</h5>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
-ARIMA (AutoRegressive Integrated Moving Average) is used for non-seasonal data, making it ideal for predicting inflation trends that do not exhibit clear 
-seasonal patterns. It considers past values and the relationship between them to forecast future CPI values.
+ARIMA (авторегресійне інтегроване ковзне середнє) використовується для несезонних даних, що робить його ідеальним для прогнозування тенденцій інфляції, які не демонструють чітких 
+сезонні моделі. Він розглядає минулі значення та зв’язок між ними для прогнозування майбутніх значень CPI.
 """)
 st.write('\n')
 st.write('\n')
 
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 21px;color: #3b3b3b;padding:0px'>SARIMA Model</h5>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 21px;color: #3b3b3b;padding:0px'>Модель SARIMA</h5>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
-SARIMA (Seasonal ARIMA) extends the ARIMA model by incorporating seasonality. This is particularly useful when dealing with data that shows regular patterns 
-over time, such as seasonal fluctuations in food prices. By accounting for both trend and seasonality, SARIMA provides more accurate forecasts for seasonal data.
+SARIMA (Seasonal ARIMA) розширює модель ARIMA, враховуючи сезонність. Це особливо корисно під час роботи з даними, які демонструють регулярні моделі 
+з часом, наприклад, сезонні коливання цін на продукти харчування. Враховуючи як тренд, так і сезонність, SARIMA надає точніші прогнози для сезонних даних.
 """)
 st.write('\n')
 st.write('\n')
@@ -132,43 +135,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.write('\n')
-
-# Display team members with images
-col1, col2 =  st.columns(2) 
-
-st.markdown("""
-            <style>
-             [data-testid="StyledFullScreenButton"]{
-                     position:static;
-                     display:contents;
-             }""", unsafe_allow_html=True)
-with col1:
-    st.image('img/K.PNG', output_format='PNG')
-    st.write("**Kimberly Marcelin Nathan A**")
-    st.write("Lead Data Scientist")
-    st.write("With expertise in predictive modeling and time series forecasting, Kim is a skilled data scientist and her proficiency in data analytics empowers businesses to make informed decisions, driving growth and operational efficiency through data-driven strategies.")
-
-st.markdown(
-        """
-       <style>
-            [data-testid="stImage"] {
-                max-width: 50%;
-            } </style> """, unsafe_allow_html=True)
-with col2:
-    st.image('img/s.jpg', output_format='auto')
-    st.write("**Sai Manasa B**")
-    st.write("Data Scientist")
-    st.write("With over 4 years of experience in data science, Sai specializes in developing machine learning models and data analysis.")
-    
-    st.markdown(
-        """
-       <style>
-            [data-testid="stImage"] {
-                max-width: 50%;
-            } </style> """, unsafe_allow_html=True)
-
-st.write('\n')
-
 
 
 # Conclusion Section
