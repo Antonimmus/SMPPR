@@ -90,8 +90,7 @@ st.write('\n')
 # Decision Support System Using ARIMA and SARIMA Models Section
 
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Система Підтримки Прийняття Рішень з використанням
-        ARIMA та SARIMA моделей</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Система Підтримки Прийняття Рішень з використанням ARIMA та SARIMA моделей</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 
 st.markdown(
