@@ -23,49 +23,39 @@ st.markdown(
         f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Introduction</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
-In an ever-evolving economic landscape, understanding and managing inflation and cost pressures is crucial for making informed policy decisions. 
-Inflation, defined as the rate at which the general level of prices for goods and services is rising, affects every aspect of an economy—from 
-consumer purchasing power to business profitability and government policy. So, We as a dedicated team of data scientists and analysts we are passionate 
-about harnessing the power of data to drive informed decisions.
-Our mission is to provide actionable insights through advanced forecasting techniques and data-driven analysis.
+Зміни економічного середовища, спричинені інфляцією та коливанням споживчих цін, створюють складні виклики для стабільності національної економіки. 
+Для їх вирішення необхідно забезпечити інструменти, що дозволяють ефективно аналізувати та прогнозувати ці тенденції, допомагаючи державним органам і 
+бізнесу ухвалювати обґрунтовані рішення.
 """)
 st.write('\n')
 st.write('\n')
 
 # Expertise
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Our Expertise and Value</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Напрямки можливого використання</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 st.write("""
          <ul>
-<li><b>Data Analytics:</b>Transforming raw data into meaningful insights.
-<li><b>Machine Learning:</b> Developing predictive models to anticipate future trends.
-<li><b>Business Intelligence:</b> Leveraging data to enhance business strategies.
-<li><b>Integrity:</b> We uphold the highest standards of honesty and transparency.
-<li><b>Innovation:</b> We embrace creativity and new ideas to solve complex problems.
-<li><b>Excellence:</b> We are committed to delivering high-quality results and solutions.</ul>""", unsafe_allow_html=True)
-st.write('\n')
-st.write('\n')
-
-# Collab with MoSpi
-st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Collaboration with MoSPI</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
-st.write('\n')
-st.write("""
-This project is specifically designed to cater to the needs of the Ministry of Statistics and Programme Implementation (MOSPI). We aim to provide MOSPI with advanced forecasting tools and insights to support their data-driven decision-making processes.
-""")
+<li><b>Data Analytics:</b>Перетворення "сирих" даних в значущий аналіз.
+<li><b>Machine Learning:</b> Створення моделей прогнузування.
+<li><b>Business Intelligence:</b> Допомога при створенні бізнес стратегій.
+<li><b>Innovation:</b> Використання креативних підходів до реальних проблем.
+<li><b>Excellence:</b> Ми прагнемо надавати високоякісні результати та рішення.</ul>""", unsafe_allow_html=True)
 st.write('\n')
 st.write('\n')
 
 # Consumer Price Index (CPI) Section
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Consumer Price Index (CPI)?</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Індекс споживчих цін (ІСЦ)?</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
 st.write('\n')
 
 st.write("""
-The Consumer Price Index (CPI) is a critical economic indicator used to measure inflation. It tracks the average change over time in the prices 
-paid by consumers for a basket of goods and services. This basket includes categories such as food, housing, transportation, and healthcare. 
-By analyzing CPI data, we can gain insights into inflation trends and cost pressures across different sectors of the economy.
+Індекс споживчих цін (ІСЦ) характеризує зміни у часі загального рівня цін на товари та послуги, які купує населення для невиробничого споживання.
+Він є показником зміни вартості фіксованого набору споживчих товарів та послуг у поточному періоді до його вартості у базисному періоді.
+
+ІСЦ є найважливішим показником, який характеризує інфляційні процеси в економіці країни і використовується для вирішення багатьох питань 
+державної політики, аналізу і прогнозу цінових процесів в економіці, перегляду розмірів грошових доходів та мінімальних соціальних гарантій 
+населення, рішення правових спорів, перерахунку показників системи національних рахунків у постійні ціни.
 """)
 st.write('\n')
 st.write('\n')
