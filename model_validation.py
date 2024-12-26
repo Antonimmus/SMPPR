@@ -32,15 +32,15 @@ relevant_categories = [
 
 # Streamlit app title
 st.markdown(
-    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>User Input Parameters</i></h5>", unsafe_allow_html=True)
+    f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>Вхідні параметри</i></h5>", unsafe_allow_html=True)
 st.write('\n')
 
 # User input for sector and category
 col1, col2 = st.columns(2)
 with col1:
-    sector = st.selectbox('Select Sector', df['Sector'].unique())
+    sector = st.selectbox('Оберіть Сектор', df['Sector'].unique())
 with col2:
-    category = st.selectbox('Select Category', relevant_categories)
+    category = st.selectbox('Оберіть категорію', relevant_categories)
 
 # Filter data based on user input
 filtered_data = df[df['Sector'] == sector]
@@ -122,7 +122,7 @@ if st.checkbox('Update Forecasts', value=True):
     fig_lstm.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Forecast', line=dict(color='orange')))
 
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>LSTM Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>LSTM прогнозування для категорії {category} в секторі {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(fig_lstm)
 
@@ -133,7 +133,7 @@ if st.checkbox('Update Forecasts', value=True):
     validation_fig_arima.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
     validation_fig_arima.update_layout(xaxis_title='Date', yaxis_title=category)
 
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>ARIMA Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>ARIMA прогнозування для категорії {category} в секторі {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(validation_fig_arima)
 
@@ -145,19 +145,19 @@ if st.checkbox('Update Forecasts', value=True):
     validation_fig_sarima.update_layout(xaxis_title='Date', yaxis_title=category)
 
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>SARIMA Validation Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>SARIMA прогнозування для категорії {category} в категорії {sector} Sector</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(validation_fig_sarima)
 
     # Comparison Plot
     comparison_fig = go.Figure()
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Validation Data', line=dict(color='green')))
-    comparison_fig.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Forecast', line=dict(color='blue')))
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Forecast', line=dict(color='orange')))
-    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Forecast', line=dict(color='red')))
+    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=validation_data_arima, mode='lines', name='Валідаційні дані', line=dict(color='green')))
+    comparison_fig.add_trace(go.Scatter(x=future_dates_lstm, y=forecast_lstm.flatten(), mode='lines', name='LSTM Прогнозування', line=dict(color='blue')))
+    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_arima, mode='lines', name='ARIMA Прогнозування', line=dict(color='orange')))
+    comparison_fig.add_trace(go.Scatter(x=validation_data_arima.index, y=forecast_sarima, mode='lines', name='SARIMA Прогнозування', line=dict(color='red')))
     comparison_fig.update_layout(xaxis_title='Date', yaxis_title=category)
 
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Comparison of ARIMA, SARIMA & LSTM Forecasts for {category}</i></h5>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Порівняння ARIMA, SARIMA & LSTM Прогнозування для категорії {category}</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(comparison_fig)
