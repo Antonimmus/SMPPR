@@ -26,15 +26,15 @@ relevant_categories = [
 ]
 
 
-st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>User Input Parameters</i></h5>", unsafe_allow_html=True)
+st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>Вхідіні параметри</i></h5>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    sector = st.selectbox('Select Sector', df['Sector'].unique())
+    sector = st.selectbox('Оберіть сектор', df['Sector'].unique())
 with col2:
-    category = st.selectbox('Select Category', relevant_categories)
+    category = st.selectbox('Оберіть категорію', relevant_categories)
 
-n_periods = st.slider('Select number of months to forecast (1-120)', 1, 120)
+n_periods = st.slider('Кількість місяців прогнозування (1-120)', 1, 120)
 
 # Filter data based on user input
 filtered_data = df[df['Sector'] == sector]
@@ -44,7 +44,7 @@ time_series = filtered_data[['Date', category]].set_index('Date').asfreq('MS')[c
 st.markdown(f"<hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'>", unsafe_allow_html=True)
 st.write('\n')
 if st.checkbox('Use LSTM Forecast', value=True):
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>LSTM Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)    
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>LSTM прогнозування для категорії {category} для {sector} сектор</i></h5>", unsafe_allow_html=True)    
     st.write('\n')
     # Prepare data for LSTM
     def prepare_data(data, n_steps):
@@ -97,7 +97,7 @@ st.markdown(f"<hr style='height: 4px;background: linear-gradient(to right, #C982
 st.write('\n')
 
 if st.checkbox('Use ARIMA/SARIMA Forecast', value=True):
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>ARIMA Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>ARIMA прогнозування для категорії {category} в {sector} сектор</i></h5>", unsafe_allow_html=True)
     st.write('\n') 
 
     # ARIMA Model
@@ -134,7 +134,7 @@ if st.checkbox('Use ARIMA/SARIMA Forecast', value=True):
     fig_sarima.add_trace(go.Scatter(x=time_series.index, y=time_series, mode='lines', name='Observed', line=dict(color='blue')))
     fig_sarima.add_trace(go.Scatter(x=future_dates_sarima, y=forecast_sarima, mode='lines', name='Forecast', line=dict(color='orange')))
     fig_sarima.update_layout(xaxis_title='Date', yaxis_title=category)
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>SARIMA Forecast for {category} in {sector} Sector</i></h5>", unsafe_allow_html=True)
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>SARIMA прогнозування для категорії {category} в {sector} сектор</i></h5>", unsafe_allow_html=True)
     st.write('\n')
     st.plotly_chart(fig_sarima)
     
@@ -168,7 +168,7 @@ if len(forecast_arima) == len(forecast_sarima) == n_periods:
         'Mean Absolute Percentage Error (MAPE)': [mape_arima, mape_sarima, mape_lstm]
     })
     st.markdown(
-            f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Metrics</i></h5><br><br>", 
+            f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Порівняння Метрик</i></h5><br><br>", 
             unsafe_allow_html=True
         )
     st.write('\n')
@@ -179,7 +179,7 @@ if len(forecast_arima) == len(forecast_sarima) == n_periods:
     for metric in performance_metrics.columns[1:]:
         comparison_fig.add_trace(go.Bar(x=performance_metrics['Model'], y=performance_metrics[metric], name=metric))
     comparison_fig.update_layout(barmode='group', title='Model Performance Comparison', xaxis_title='Model', yaxis_title='Error Metric')
-    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Model Performance Comparison (MAE, RMSE, MSE, MAPE)</i></h5>", unsafe_allow_html=True)
+    st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Графік порівняння метрик (MAE, RMSE, MSE, MAPE)</i></h5>", unsafe_allow_html=True)
     st.plotly_chart(comparison_fig)
     
     best_model = None
@@ -212,6 +212,6 @@ if len(forecast_arima) == len(forecast_sarima) == n_periods:
 
         # Recommendation section
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Recommended Model</i></h5><br>", unsafe_allow_html=True)
-    st.markdown(f"<h6 style='text-align: left; letter-spacing:1px;font-size: 18px; font-weight: 250;color: #3b3b3b;padding:0px'><br>The recommended model for forecasting CPI for {category} in {sector} sector is <b>{best_model}</b></h6><br>", unsafe_allow_html=True)
+    st.markdown(f"<h6 style='text-align: left; letter-spacing:1px;font-size: 18px; font-weight: 250;color: #3b3b3b;padding:0px'><br>Рекомендована модель для прогнозування ІСЦ для категорії {category} в {sector} сектор is <b>{best_model}</b></h6><br>", unsafe_allow_html=True)
     for metric, value in best_metrics.items():
        st.write(f"**Best {metric}:** {value:.4f}")
