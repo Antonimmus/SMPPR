@@ -23,15 +23,15 @@ relevant_categories = [
 
 # Streamlit app title
 st.markdown(
-    "<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>CPI Monthly Trends User Input Parameters</i></h5>", 
+    "<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>Помісячні тренди для ІСЦ по заданим параметрам</i></h5>", 
     unsafe_allow_html=True
 )
 st.write('\n')
 
 # User input for sector, year, and category
-selected_sector = st.selectbox('Select Sector', df['Sector'].unique())
-selected_year = st.selectbox('Select Year', df['Year'].unique())
-selected_category = st.selectbox('Select Category', relevant_categories)
+selected_sector = st.selectbox('Оберіть сектор', df['Sector'].unique())
+selected_year = st.selectbox('Оберіть рік', df['Year'].unique())
+selected_category = st.selectbox('Оберіть категорію', relevant_categories)
 
 # Filter data based on user input
 filtered_data = df[(df['Sector'] == selected_sector) & (df['Year'] == selected_year)]
@@ -76,15 +76,15 @@ if selected_category in filtered_data.columns:
     ))
 
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>CPI and Percentage Change for {selected_category} in {selected_sector} Sector ({selected_year})</i></h5>", 
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>ІСЦ та відсоткова зміна для категорії {selected_category} в {selected_sector} секторі ({selected_year})</i></h5>", 
         unsafe_allow_html=True
     )
     st.write('\n')
 
     # Update layout to have two y-axes with enhanced styling
     fig.update_layout(
-        xaxis_title='Date',
-        yaxis_title='CPI Value',
+        xaxis_title='Дата',
+        yaxis_title='ІСЦ Значення',
         yaxis=dict(
             title='CPI Value',
             titlefont=dict(color='royalblue'),
@@ -119,13 +119,13 @@ if selected_category in filtered_data.columns:
 else:
     st.write("Selected category does not exist in the dataset.")
 st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Recommendations</i></h5><br>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Рекомендації</i></h5><br>", unsafe_allow_html=True)
 st.write('\n')
 if filtered_data['CPI_Change'].max() > 10:
-    st.write("**Significant Increase**: The percentage change line shows a significant increase. This could indicate high inflation for this category. Businesses might want to adjust pricing strategies, while consumers should be mindful of increased costs.")
+    st.write("**Зростання**: Лінія відсоткової зміни показує значне збільшення. Це може свідчити про високу інфляцію для цієї категорії. Компанії можуть захотіти скорегувати стратегії ціноутворення, тоді як споживачі повинні пам’ятати про збільшення витрат.")
 elif filtered_data['CPI_Change'].min() < -10:
-    st.write("**Significant Decrease**: The percentage change line shows a significant decrease. This might indicate reduced inflation or deflation. Businesses could potentially leverage lower costs, and consumers might benefit from lower prices.")
+    st.write("**Спадання**:Лінія відсоткової зміни показує значне зменшення. Це може свідчити про зниження інфляції або дефляції. Підприємства потенційно можуть використовувати нижчі витрати, а споживачі можуть виграти від нижчих цін.")
 elif filtered_data['CPI_Change'].max() < 5 and filtered_data['CPI_Change'].min() > -5:
-    st.write("**Stable Trend**: The CPI values and percentage changes are relatively stable. Continue monitoring to stay updated on any future significant changes.")
+    st.write("**Стабільний тренд**:Значення CPI та зміни у відсотках є відносно стабільними. Продовжуйте стежити, щоб бути в курсі будь-яких майбутніх значних змін.")
 else:
-    st.write("**Seasonal or Anomalous Trends**: There might be seasonal patterns or anomalies in the data. Review historical data and plan accordingly.")
+    st.write("**Сезонність або Аномалії**: У даних можуть бути сезонні закономірності або аномалії. Перегляньте історичні дані.")
