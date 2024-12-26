@@ -212,6 +212,6 @@ if len(forecast_arima) == len(forecast_sarima) == n_periods:
 
         # Recommendation section
     st.markdown(f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Recommended Model</i></h5><br>", unsafe_allow_html=True)
-    st.markdown(f"<h6 style='text-align: left; letter-spacing:1px;font-size: 18px; font-weight: 250;color: #3b3b3b;padding:0px'><br>Рекомендована модель для прогнозування ІСЦ для категорії {category} в {sector} сектор is <b>{best_model}</b></h6><br>", unsafe_allow_html=True)
+    st.markdown(f"<h6 style='text-align: left; letter-spacing:1px;font-size: 18px; font-weight: 250;color: #3b3b3b;padding:0px'><br>Рекомендована модель для прогнозування ІСЦ для категорії {category} в {sector} сектор - <b>{best_model}</b></h6><br>", unsafe_allow_html=True)
     for metric, value in best_metrics.items():
        st.write(f"**Best {metric}:** {value:.4f}")
