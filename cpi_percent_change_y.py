@@ -23,15 +23,15 @@ relevant_categories = [
 
 # Streamlit app title
 st.markdown(
-    "<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>CPI Yearly Trends User Input Parameters</i></h5>", 
+    "<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><br><i>ІСЦ тренд по рокам Trends по вказаним параметрам</i></h5>", 
     unsafe_allow_html=True
 )
 st.write('\n')
 
 # User input for sector, category, and month
-selected_sector = st.selectbox('Select Sector', df['Sector'].unique())
-selected_category = st.selectbox('Select Category', relevant_categories)
-selected_month = st.selectbox('Select Month', df['Month'].unique())
+selected_sector = st.selectbox('Оберіть сектор', df['Sector'].unique())
+selected_category = st.selectbox('Оберіть категорію', relevant_categories)
+selected_month = st.selectbox('Вкажіть місяць', df['Month'].unique())
 
 # Filter data based on user input
 filtered_data = df[(df['Sector'] == selected_sector) & (df['Month'] == selected_month)]
@@ -72,7 +72,7 @@ if selected_category in filtered_data.columns:
     ))
 
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>CPI and Percentage Change for {selected_category} in {selected_sector} Sector ({selected_month})</i></h5>", 
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>ІСЦ та відсоткова змінна для категорії {selected_category} в {selected_sector} секторі ({selected_month})</i></h5>", 
         unsafe_allow_html=True
     )
     st.write('\n')
