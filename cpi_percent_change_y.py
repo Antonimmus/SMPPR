@@ -115,14 +115,14 @@ if selected_category in filtered_data.columns:
     
     # Add recommendations based on the trends
     st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Recommendations</i></h5><br>", unsafe_allow_html=True)
+        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><hr style='height: 4px;background: linear-gradient(to right, #C982EF, #b8b8b8);'><br><i>Рекомендації</i></h5><br>", unsafe_allow_html=True)
     st.write('\n')
     if filtered_data['CPI_Change'].max() > 10:
-        st.write("**Significant Increase**: The percentage change line shows a significant increase. This could indicate high inflation for this category in recent years. Businesses might want to adjust pricing strategies or consumers should be mindful of increased costs.")
+        st.write("**Зростання**:Лінія відсоткової зміни показує значне збільшення. Це може свідчити про високу інфляцію для цієї категорії в останні роки. Компанії можуть захотіти скорегувати стратегії ціноутворення або споживачі повинні пам’ятати про збільшення витрат.")
     elif filtered_data['CPI_Change'].min() < -10:
-        st.write("**Significant Decrease**: The percentage change line shows a significant decrease. This might indicate reduced inflation or deflation. Businesses could potentially leverage lower costs, while consumers might benefit from lower prices.")
+        st.write("**Спадання**: Лінія відсоткової зміни показує значне зменшення. Це може свідчити про зниження інфляції або дефляції. Підприємства потенційно можуть використовувати нижчі витрати, тоді як споживачі можуть отримати вигоду від нижчих цін.")
     else:
-        st.write("**Stable Trend**: The CPI values and percentage changes are relatively stable. Continue monitoring to stay updated on any future significant changes.")
+        st.write("**Стабільний тренд**: Значення CPI та відсоткові зміни є відносно стабільними. Продовжуйте стежити, щоб бути в курсі будь-яких майбутніх значних змін.")
     
 else:
-    st.write("Selected category does not exist in the dataset.")
+    st.write("Обраної категорії немає в заданій вибірці.")
