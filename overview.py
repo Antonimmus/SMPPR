@@ -113,30 +113,3 @@ SARIMA (Seasonal ARIMA) розширює модель ARIMA, враховуюч�
 st.write('\n')
 st.write('\n')
 
-# Benefits for MoSPI’s NSO and CSO Section
-st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Benefits for MoSPI’s NSO and CSO</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
-st.write('\n')
-st.write("""
-By integrating ARIMA and SARIMA models into a decision support system, we provide MoSPI’s NSO and CSO with a powerful tool to anticipate inflationary trends. 
-This system allows policymakers to:
-- **Make Data-Driven Decisions:** With accurate forecasts, policymakers can base their decisions on solid data, reducing the uncertainty associated with economic planning.
-- **Manage Inflation Proactively:** By predicting inflationary pressures, the government can implement measures to control inflation before it spirals out of control.
-- **Tailor Policies to Sector-Specific Needs:** With detailed forecasts for different sectors, such as food, housing, and healthcare, the government can design policies that address specific areas of concern.
-- **Enhance Economic Stability:** Accurate inflation forecasting helps in maintaining economic stability by preventing unexpected shocks to the economy.
-""")
-st.write('\n')
-st.write('\n')
-
-# Conclusion Section
-st.markdown(
-        f"<h5 style='text-align: left; letter-spacing:1px;font-size: 23px;color: #3b3b3b;padding:0px'><i>Conclusion</i></h5><hr style='margin-top:15px; margin-bottom:10px'>", unsafe_allow_html=True)
-st.write('\n')
-st.write("""
-The *Decision Support System for Managing Inflation and Cost Pressure* is not just a forecasting tool; it is a vital component in the arsenal of policymakers. 
-By providing accurate and timely forecasts, this system aids in the design and implementation of policies that safeguard economic stability and promote sustainable growth. 
-Through the use of sophisticated models like ARIMA and SARIMA, we empower MoSPI’s NSO and CSO to navigate the complexities of inflation and cost pressure, ensuring that 
-the Indian economy remains resilient in the face of future challenges.
-""")
-st.write('\n')
-st.write('\n')
