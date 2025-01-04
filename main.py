@@ -30,7 +30,7 @@ st.markdown(
             }
             
             [data-testid="stHeader"]::before {
-                content: "Decision Support System For Managing Inflation & Cost Pressure";
+                content: "Система Підтримки Прийняття Рішень";
                 font-size: 25px;
                 font-family: "Source Sans Pro", sans-serif;
                 letter-spacing: 0.005em;
