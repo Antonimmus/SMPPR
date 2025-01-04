@@ -77,7 +77,7 @@ st.markdown(
         </style>
 
         <div class="footer">
-        © 2024 Decision Support System By Kim & Sai
+        © 2024 Decision Support System By Anton Mishchenko
         </div>
         """,
         unsafe_allow_html=True,
